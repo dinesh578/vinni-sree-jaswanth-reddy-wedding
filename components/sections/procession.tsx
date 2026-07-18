@@ -22,8 +22,7 @@ export function Procession() {
   const glowOpacity = useTransform(scrollYProgress, [0.55, 0.78, 0.98], [0, 1, 0.4])
   // Doors fade in (closed) after the families meet, then slide fully apart before the section ends.
   const doorOpacity = useTransform(scrollYProgress, [0.48, 0.58], [0, 1])
-  const leftDoorX = useTransform(scrollYProgress, [0.62, 0.9], ['0%', '-100%'])
-  const rightDoorX = useTransform(scrollYProgress, [0.62, 0.9], ['0%', '100%'])
+  const doorGap = useTransform(scrollYProgress, [0.62, 0.9], ['0%', '100%'])
   const captionOpacity = useTransform(scrollYProgress, [0.6, 0.72, 0.92, 0.99], [0, 1, 1, 0])
 
   return (
