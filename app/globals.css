@@ -1,0 +1,223 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import 'shadcn/tailwind.css';
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Wedding palette */
+  --color-gold: var(--gold);
+  --color-gold-soft: var(--gold-soft);
+  --color-maroon: var(--maroon);
+  --color-maroon-deep: var(--maroon-deep);
+  --color-emerald: var(--emerald);
+  --color-ivory: var(--ivory);
+  --color-ink: var(--ink);
+
+  --font-sans: var(--font-cormorant), Georgia, serif;
+  --font-serif: var(--font-marcellus), Georgia, serif;
+  --font-display: var(--font-marcellus), Georgia, serif;
+
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+}
+
+:root {
+  color-scheme: light;
+
+  /* Core wedding palette */
+  --ivory: oklch(0.965 0.018 85);
+  --gold: oklch(0.74 0.13 78);
+  --gold-soft: oklch(0.83 0.09 82);
+  --maroon: oklch(0.37 0.13 22);
+  --maroon-deep: oklch(0.24 0.09 24);
+  --emerald: oklch(0.46 0.1 160);
+  --ink: oklch(0.2 0.03 40);
+
+  --background: oklch(0.965 0.018 85);
+  --foreground: oklch(0.26 0.05 33);
+  --card: oklch(0.99 0.012 90);
+  --card-foreground: oklch(0.26 0.05 33);
+  --popover: oklch(0.99 0.012 90);
+  --popover-foreground: oklch(0.26 0.05 33);
+  --primary: oklch(0.74 0.13 78);
+  --primary-foreground: oklch(0.22 0.06 30);
+  --secondary: oklch(0.37 0.13 22);
+  --secondary-foreground: oklch(0.97 0.02 85);
+  --muted: oklch(0.92 0.02 82);
+  --muted-foreground: oklch(0.48 0.05 40);
+  --accent: oklch(0.46 0.1 160);
+  --accent-foreground: oklch(0.97 0.02 85);
+  --destructive: oklch(0.55 0.2 27);
+  --border: oklch(0.82 0.05 80);
+  --input: oklch(0.82 0.05 80);
+  --ring: oklch(0.74 0.13 78);
+
+  --radius: 0.75rem;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+  }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: var(--font-display);
+  }
+
+  /* Gold shimmering text */
+  .text-gold-gradient {
+    background: linear-gradient(
+      100deg,
+      oklch(0.68 0.12 70) 0%,
+      oklch(0.88 0.11 88) 35%,
+      oklch(0.98 0.05 95) 50%,
+      oklch(0.85 0.12 84) 65%,
+      oklch(0.66 0.13 66) 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
+
+  .bg-cinematic {
+    background:
+      radial-gradient(120% 90% at 50% 0%, oklch(0.32 0.11 28) 0%, transparent 55%),
+      linear-gradient(180deg, oklch(0.18 0.06 26) 0%, oklch(0.13 0.04 28) 100%);
+  }
+
+  .glass-gold {
+    background: linear-gradient(
+      160deg,
+      color-mix(in oklch, var(--ivory) 14%, transparent) 0%,
+      color-mix(in oklch, var(--gold) 8%, transparent) 100%
+    );
+    backdrop-filter: blur(14px) saturate(120%);
+    -webkit-backdrop-filter: blur(14px) saturate(120%);
+    border: 1px solid color-mix(in oklch, var(--gold) 45%, transparent);
+    box-shadow:
+      0 0 0 1px color-mix(in oklch, var(--gold) 15%, transparent) inset,
+      0 20px 60px -20px oklch(0 0 0 / 0.5),
+      0 0 40px -10px color-mix(in oklch, var(--gold) 40%, transparent);
+  }
+
+  .gold-hairline {
+    border-image: linear-gradient(
+        90deg,
+        transparent,
+        var(--gold) 20%,
+        oklch(0.95 0.06 92) 50%,
+        var(--gold) 80%,
+        transparent
+      )
+      1;
+  }
+
+  .drop-glow-gold {
+    filter: drop-shadow(0 0 18px color-mix(in oklch, var(--gold) 55%, transparent));
+  }
+
+  @keyframes shimmer-sweep {
+    0% {
+      background-position: -200% center;
+    }
+    100% {
+      background-position: 200% center;
+    }
+  }
+  .animate-shimmer {
+    background-size: 200% auto;
+    animation: shimmer-sweep 6s linear infinite;
+  }
+
+  @keyframes flicker {
+    0%,
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    45% {
+      opacity: 0.82;
+      transform: scale(0.97);
+    }
+    70% {
+      opacity: 0.95;
+      transform: scale(1.02);
+    }
+  }
+  .animate-flicker {
+    animation: flicker 3.2s ease-in-out infinite;
+  }
+
+  @keyframes float-y {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-12px);
+    }
+  }
+  .animate-float {
+    animation: float-y 6s ease-in-out infinite;
+  }
+
+  @keyframes spin-slow {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  .animate-spin-slow {
+    animation: spin-slow 40s linear infinite;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
